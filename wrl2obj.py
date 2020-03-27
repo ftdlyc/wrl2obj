@@ -11,7 +11,7 @@ def wrl2obj(wrl_file, save_obj_file):
   ## extract vertexs
   vertex_pos = re.search('Coordinate.+?{.+?point.+?\[(.+?)\].+?}', raw, re.S).regs[1]
   vertex_part = raw[vertex_pos[0]:vertex_pos[1]]
-  vertex_lists = re.findall('[-+]?\d*\.?\d+ [-+]?\d*\.?\d+ [-+]?\d*\.?\d+', vertex_part)
+  vertex_lists = re.findall('[-+]?\d*\.?\d+e?[-+]?\d* [-+]?\d*\.?\d+e?[-+]?\d* [-+]?\d*\.?\d+e?[-+]?\d*', vertex_part)
   vertexs = []
   for s in vertex_lists:
       [x, y, z] = s.split(' ')
@@ -20,7 +20,7 @@ def wrl2obj(wrl_file, save_obj_file):
   ## extract normals
   normal_pos = re.search('Normal.+?{.+?vector.+?\[(.+?)\].+?}', raw, re.S).regs[1]
   normal_part = raw[normal_pos[0]:normal_pos[1]]
-  normal_lists = re.findall('[-+]?\d*\.?\d+ [-+]?\d*\.?\d+ [-+]?\d*\.?\d+', normal_part)
+  normal_lists = re.findall('[-+]?\d*\.?\d+e?[-+]?\d* [-+]?\d*\.?\d+e?[-+]?\d* [-+]?\d*\.?\d+e?[-+]?\d*', normal_part)
   normals = []
   for s in normal_lists:
       [nx, ny, nz] = s.split(' ')
@@ -29,7 +29,7 @@ def wrl2obj(wrl_file, save_obj_file):
   ## extract textures
   texture_pos = re.search('Color.+?{.+?color.+?\[(.+?)\].+?}', raw, re.S).regs[1]
   texture_part = raw[texture_pos[0]:texture_pos[1]]
-  texture_lists = re.findall('[-+]?\d*\.?\d+ [-+]?\d*\.?\d+ [-+]?\d*\.?\d+', texture_part)
+  texture_lists = re.findall('[-+]?\d*\.?\d+e?[-+]?\d* [-+]?\d*\.?\d+e?[-+]?\d* [-+]?\d*\.?\d+e?[-+]?\d*', texture_part)
   textures = []
   for s in texture_lists:
       [r, g, b] = s.split(' ')
